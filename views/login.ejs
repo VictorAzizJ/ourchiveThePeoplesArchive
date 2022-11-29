@@ -1,69 +1,40 @@
-<!doctype html>
-<html>
-<head>
-    <title>21 Savage Fan Site</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <section class="h-100 h-custom gradient-custom-2">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
-              <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                <div class="card-body p-0">
-                  <div class="row g-0">
-                    <div class="col-lg-6">
-                      <div class="p-5">
-                        <h3 class="fw-normal mb-5" style="color: #4835d4;">Welcome to Ourchive</h3>
-      
-                        
-      
-                        <form action="/login" method="post">
-                        
-                        <div class="mb-4">
-                          <div class="form-outline form-white">
-                            <input name="email" type="text" id="form3Examplea9" class="form-control form-control-lg" />
-                            <label class="form-label" for="form3Examplea9">Your Email</label>
-                          </div>
-                        </div>
+<%- include('partials/header') -%>
 
-                        
-                        
-                        <div class="mb-4">
-                          <div class="form-outline form-white">
-                            <input name="password" type="password" id="form3Examplea9" class="form-control form-control-lg" />
-                            <label class="form-label" for="form3Examplea9">Password</label>
-                          </div>
-                        </div>
-      
-                        <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                          <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
-                          <label class="form-check-label text-black" for="form2Example3">
-                            I do accept the <a href="#!" class="text-black"><u>Terms and Conditions</u></a> of your
-                            site.
-                          </label>
-                        </div>
-      
-                        <button type="submit" class="btn btn-light btn-lg"
-                          data-mdb-ripple-color="dark">Log-In</button>
-                        </form>
-
-                        <hr>
-
-                        
-                        <p>Need an account? <a href="/">Signup</a></p>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<main class="container">
+  <div class="row justify-content-center">
+    <section class="col-6 mt-5">
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+      messages.info.forEach( el => { %>
+      <div class="alert alert-info"><%= el.msg %></div>
+      <% }) %> <% } %>
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="email"
+          />
         </div>
-      </section>
-</body>
-</html>
-<hr>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            name="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+<%- include('partials/footer') -%>

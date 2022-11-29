@@ -1,14 +1,20 @@
-# ourchiveThePeoplesArchive
-#### A full-stack web app development project for non-profit Ourchive
-![ourchivePeopleFest](https://user-images.githubusercontent.com/112363356/197666162-e2464ded-80b0-42c6-be67-ec9507d80144.jpg)
+# Install
 
-The Philadelphia based non-profit Ourchive (a digital based archive for artists and activist) re-launch post pandemic June 15. They have chosen me to build their web application which they intend to use as a place to engage with their community and build more community.
+`npm install`
 
-Skills: VUE JS / REACT / JS / HTML / CSS
+---
 
-- 🔭 I’m currently working on this page. 
+# Things to add
 
+- Create a `.env` file in config folder and add the following as `key = value`
+  - PORT = 2121 (can be any port example: 3000)
+  - DB_STRING = `your database URI`
+  - CLOUD_NAME = `your cloudinary cloud name`
+  - API_KEY = `your cloudinary api key`
+  - API_SECRET = `your cloudinary api secret`
 
+---
 
+# Run
 
-
+`npm start`

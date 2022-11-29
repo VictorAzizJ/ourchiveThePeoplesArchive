@@ -1,6 +1,19 @@
-// config/database.js
-module.exports = {
+const mongoose = require("mongoose");
 
-    'url' : 'mongodb+srv://VictorAzizJ:demo@cluster0.ed64pxn.mongodb.net/ourchive?retryWrites=true&w=majority', 
-    'dbName': 'ourchive'
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.DB_STRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    });
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 };
+
+module.exports = connectDB;
