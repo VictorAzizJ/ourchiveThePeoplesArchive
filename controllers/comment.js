@@ -4,12 +4,14 @@ const comment = require("../models/Comment");
 module.exports = {
 
   createComment: async (req, res) => {
-    console.log('working')
+    console.log('info you looking for' + ' ' + req.user)
+    
     try {
      comment.create({
         text: req.body.text,
         likes: 0,
         user: req.user.id,
+        userName: req.user.userName,
         commentFor: req.params.id
 
       });

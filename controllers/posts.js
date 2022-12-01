@@ -1,6 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const comment = require("./comment");
+const Comment = require("../models/Comment");
 const axios = require("axios");
 const assembly = axios.create({
   baseURL: "https://api.assemblyai.com/v2",
@@ -29,8 +29,31 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  },
+  }, 
+  // get from the user for search look at line 19 create search form refer to line 25 for simalar 
+
+  /*getSearch: async (req, res) => {
+    try {
+      const posts = await Post.find(`${}`).sort({ createdAt: "desc" }).lean();
+      res.render("feed.ejs", { posts: posts });
+    } catch (err) {
+      console.log(err);
+    }
+  }, */
   getPost: async (req, res) => {
+    try {
+       
+      const post = await Post.findById(req.params.id);
+      const comment = await Comment.find({commentFor: req.params.id})
+       console.log(post)
+       console.log(comment)
+      res.render("post.ejs", { post: post, user: req.user, comment: comment });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  /*getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
       const comment = res.render("post.ejs", {
@@ -41,7 +64,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  },
+  },*/  
   createPost: async (req, res) => {
     try {
       console.log(req.file);
