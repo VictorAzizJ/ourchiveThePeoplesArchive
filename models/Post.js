@@ -30,6 +30,16 @@ const PostSchema = new mongoose.Schema({
     required: false,
 
   },
+  words: { 
+    type: Array,
+    required: false,
+
+  },
+  fileType: { 
+    type: String,
+    required: true,
+
+  },
   createdAt: {
     type: Date,
     default: Date.now,

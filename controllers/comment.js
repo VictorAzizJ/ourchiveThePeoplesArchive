@@ -1,6 +1,6 @@
 
 const comment = require("../models/Comment");
-
+const { ObjectId } = require("mongodb");
 module.exports = {
 
   createComment: async (req, res) => {
@@ -12,7 +12,9 @@ module.exports = {
         likes: 0,
         user: req.user.id,
         userName: req.user.userName,
-        commentFor: req.params.id
+        commentFor: req.params.id,
+        feedback: req.body.feedback,
+        simProjects: req.body.simProjects,
 
       });
       console.log("Post has been added!");
@@ -36,17 +38,18 @@ module.exports = {
     }
   },
   deleteComment: async (req, res) => {
+    console.log(req.params)
     try {
-      // Find post by id
-      let comment = await comment.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(comment.cloudinaryId);
-      // Delete post from db
-      await comment.remove({ _id: req.params.id });
+      
+      
+      //let test = await comment.findByID(ObjectId(req.params.id));
+      //console.log('testing' , test)
+      
+      await comment.remove({ _id: ObjectId(req.params.id) });
       console.log("Deleted Comment");
       res.redirect("/profile");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/error");
     }
   },
 };

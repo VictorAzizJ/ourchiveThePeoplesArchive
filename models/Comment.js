@@ -6,6 +6,14 @@ const CommentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  feedback:{
+    type: String,
+    required: true
+  },
+  simProjects:{
+    type: String,
+    required: true
+  },
   
   commentFor: {
     type: mongoose.Schema.Types.ObjectId,

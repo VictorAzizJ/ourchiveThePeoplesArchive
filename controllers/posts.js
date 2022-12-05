@@ -91,8 +91,10 @@ module.exports = {
             cloudinaryId: result.public_id,
             caption: req.body.caption,
             likes: 0,
+            fileType: req.body.fileType,
             user: req.user.id,
-            text: transcription.data.text
+            text: transcription.data.text,
+            words: transcription.data.words
           });
           console.log("Post has been added!");
            res.redirect("/profile");

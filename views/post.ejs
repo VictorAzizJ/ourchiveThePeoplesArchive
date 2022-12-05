@@ -3,7 +3,18 @@
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
+      <%if(post.fileType == "audio"){ %>
+        
+      <audio src="<%= post.image%>" controls > </audio>
+      <%}%>
+      <%if(post.fileType == "video"){ %>
+        
+      <video src="<%= post.image%>" controls > </video>
+      <%}%>
+      <%if(post.fileType == "image"){ %>
+        
+      <img class="img-fluid" src="<%= post.image%>">
+      <%}%>
       <div class="row justify-content-between">
         <form
           class="col-1"
@@ -22,6 +33,9 @@
           <button class="btn btn-primary fa fa-trash" type="submit"></button>
         </form>
         <%}%>
+        <p><%= post.text %></p>
+        
+        <p><%= post.words %></p>
       </div>
     </div>
     <div class="col-3 mt-5">
@@ -32,6 +46,15 @@
         <ul>
           <%for (let i=0; i < comment.length; i++){%>
             <li><%=comment[i].userName%>: <%=comment[i].text%></li>
+            <%if(comment[i].user == user.id){ %>
+              <form
+              action="/comment/deleteComment/<%= comment[i]._id %>?_method=DELETE"
+              method="POST"
+              class="col-3"
+              >
+              <button class="btn btn-primary fa fa-trash" type="submit"></button>
+              </form>
+            <%}%> 
           <%}%> 
         </ul>
         </div>
@@ -41,8 +64,11 @@
       method="POST"
       >
       
+      <textarea class="" type="text" placeholder="Have any feedback for the creator" id="feedback" name="feedback"></textarea>
+      <textarea class="" type="text" placeholder="Give us info on similar works and projects" id="simProjects" name="simProjects"></textarea>
       <input class="" type="text" placeholder="comment" id="comment" name="text">
-      <button type="submit" class="btn btn-primary">Talk your ish</button>
+      
+      <button type="submit" class="btn btn-primary">Help the Archive</button>
       </form>
     </div>
     <!--display comment here-->
